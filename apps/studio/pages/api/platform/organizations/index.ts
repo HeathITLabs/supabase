@@ -24,6 +24,18 @@ const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
       name: process.env.DEFAULT_ORGANIZATION_NAME || 'Default Organization',
       slug: 'default-org-slug',
       billing_email: 'billing@supabase.co',
+      billing_metadata: {
+        billing_provider: 'stripe',
+        subscription_id: 'sub_mock_123',
+        billing_provider_customer_id: 'cus_mock_123',
+        payment_provider: 'stripe',
+        payment_provider_customer_id: 'cus_mock_123',
+        // Optional partner billing for testing different scenarios
+        // partner_billing: {
+        //   partner: 'aws',
+        //   clazar_buyer_id: 'buyer_123'
+        // }
+      },
       plan: {
         id: 'enterprise',
         name: 'Enterprise',

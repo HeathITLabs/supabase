@@ -4189,6 +4189,24 @@ export interface components {
       resources: string[] | null
       restrictive: boolean | null
     }
+    AwsPartnerBilling: {
+      partner: 'aws'
+      clazar_buyer_id: string
+    }
+    FlyPartnerBilling: {
+      partner: 'fly'
+    }
+    VercelPartnerBilling: {
+      partner: 'vercel'
+    }
+    BillingMetadata: {
+      partner_billing?: AwsPartnerBilling | FlyPartnerBilling | VercelPartnerBilling
+      billing_provider: 'stripe' | 'orb'
+      subscription_id: string
+      payment_provider?: 'stripe' | 'orb'
+      payment_provider_customer_id?: string
+      billing_provider_customer_id: string
+    }
     AccessToken: {
       created_at: string
       id: number
@@ -6350,6 +6368,7 @@ export interface components {
     }
     OrganizationResponse: {
       billing_email: string | null
+      billing_metadata: BillingMetadata | null
       id: number
       is_owner: boolean
       name: string
@@ -6402,9 +6421,7 @@ export interface components {
     }
     OrganizationSlugResponse: {
       billing_email: string | null
-      billing_metadata: {
-        [key: string]: unknown
-      } | null
+      billing_metadata: BillingMetadata | null
       has_oriole_project: boolean
       id: number
       name: string
